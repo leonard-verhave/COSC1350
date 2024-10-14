@@ -1,0 +1,66 @@
+<!--
+Author: leonard verhave
+Filename: pizzaOrder
+data: 10-10-24
+ -->
+
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Pizza Order Form</title>
+     <link rel="stylesheet" href="style.css">
+     <script src="Pizza.js" defer></script>
+ </head>
+ <body>
+     <h1>York's Finest</h1>
+     <form id="pizzaForm">
+         <label for="name">Name:</label>
+         <input type="text" id="name" name="name" placeholder="Your full name" required>
+ 
+         <label for="size">Choose Pizza Size:</label>
+         <select id="size" name="size" required>
+             <option value="">Select a size</option>
+             <option value="small">Small ($5.00)</option>
+             <option value="medium">Medium ($9.00)</option>
+             <option value="large">Large ($12.00)</option>
+         </select>
+ 
+         <label for="crust">Choose Crust:</label>
+         <select id="crust" name="crust" required>
+             <option value="">Select a crust</option>
+             <option value="thin">Thin Crust ($2.00)</option>
+             <option value="thick">Thick Crust ($4.00)</option>
+             <option value="Stuffed">Stuffed Crust ($5.00)</option>
+         </select>
+ 
+         <label>Toppings:</label>
+         <div class="checkbox-group">
+             <label><input type="checkbox" name="toppings" value="pepperoni" data-price="2.00"> Pepperoni ($2.00)</label>
+             <label><input type="checkbox" name="toppings" value="mushrooms" data-price="1.50"> Mushrooms ($1.50)</label>
+             <label><input type="checkbox" name="toppings" value="sausage" data-price="2.50"> Sausage ($3.00)</label>
+             <label><input type="checkbox" name="toppings" value="bacon" data-price="3.00"> Bacon ($2.00)</label>
+             <label><input type="checkbox" name="toppings" value="extraCheese" data-price="1.75"> Extra Cheese ($1.75)</label>
+         </div>
+ 
+         <label for="pickupTime">Pickup Time:</label>
+         <select id="pickupTime" name="pickupTime" required>
+             <option value="">Select Pickup Time</option>
+             <option value="30min">30 minutes from now</option>
+             <option value="1hour">1 hour from now</option>
+             <option value="1hour30min">1 hour 30 minutes from now</option>
+             <option value="2hours">2 hours from now</option>
+         </select>
+ 
+         <div class="button-group">
+             <input type="submit" value="Place Order">
+         </div>
+ 
+         <div id="totalPrice">Total Price: $0.00</div>
+     
+     </form>
+ </body>
+ </html>
+ 
+ 
