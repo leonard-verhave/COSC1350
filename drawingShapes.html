@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+
+
+<html lang="en">
+    <head>
+        <meta charset = "UTF - 8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Canvas Shapes</title>
+        <style>
+          canvas {
+            border: 1px solid black;
+          }
+        </style>
+      </head>
+      <body>
+    
+    <canvas width = "600" height="400"></canvas>
+    <script>
+        let cx = document.querySelector("canvas").getContext("2d");
+
+      function drawTrapezoid() {
+          cx.beginPath();
+          cx.moveTo(50, 50);
+          cx.lineTo(150, 50);
+          cx.lineTo(200, 130);
+          cx.lineTo(0, 130);
+          cx.closePath();
+          cx.stroke();
+      }
+       drawTrapezoid();
+
+      function drawDiamond() {
+          cx.beginPath();
+          cx.moveTo(300, 100);
+          cx.lineTo(340, 140);
+          cx.lineTo(300, 180);
+          cx.lineTo(260, 140);
+          cx.closePath();
+          cx.fillStyle = 'red';
+          cx.fill();
+          cx.stroke();
+       }
+       drawDiamond();
+
+      function drawZigzag() {
+          let startX = 350;  
+          let startY = 50;   
+          let length = 200;
+          let segments = 10;
+          let step = length / segments;
+          cx.beginPath();
+          cx.moveTo(startX, startY);
+          for (let i = 0; i < segments; i++) {
+              let offset = (i % 2 === 0) ? 20 : -20;  
+              cx.lineTo(startX + offset, startY + (i + 1) * step);  
+           }
+          cx.stroke();
+      }
+      drawZigzag();
+        
+      function drawSpiral() {
+          let radius = 5;
+          let angle = 0;
+          cx.beginPath();
+          cx.moveTo(500, 150);
+            for (let i = 0; i < 100; i++) {
+              angle += Math.PI / 15;
+              radius += 1;
+              let x = 500 + radius * Math.cos(angle);
+              let y = 150 + radius * Math.sin(angle);
+              cx.lineTo(x, y);
+          }
+          cx.stroke();
+        }
+        drawSpiral();
+        
+      function drawStar(x, y, radiusOuter, radiusInner) {
+        const points = 8;
+        const angleStep = Math.PI / points;
+        cx.beginPath();
+
+        const firstAngle = 0;
+        const firstX = x + Math.cos(firstAngle) * radiusOuter;
+        const firstY = x + Math.sin(firstAngle) * radiusOuter;
+
+        cx.moveTo(firstX, firstY);
+
+        for (let i = 1; i < points * 2; i++) {
+          const angle = i * angleStep;
+          const radius = i % 2 === 0 ? radiusOuter : radiusInner;
+
+          const xPos = x + Math.cos(angle) * radius; 
+          const yPos = x + Math.sin(angle) * radius; 
+
+          cx.lineTo (xPos, yPos);
+        }
+        cx.closePath();
+        cx.fillStyle = "yellow";
+        cx.fill();
+        cx.stroke();
+      }
+
+      drawStar(300,300,50,25);
+    </script>
+      </body>
+</html>
