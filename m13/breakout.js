@@ -11,6 +11,27 @@
 const canvas = document.getElementById("myCanvas");
 const ctx = canvas.getContext("2d");
 
+
+// Bricks 
+const brickRows = 4;
+const brickColumns = 6;
+const brickWidth = 90;
+const brickHeight = 25;
+const brickPadding = 10;
+const brickTopOffset = 40; 
+const brickLeftOffset = 5; 
+let bricks = [];
+
+for (let r = 0; r < brickRows; r++) {
+  bricks[r] = [];
+  for (let c = 0; c < brickColumns; c++) {
+    let brickX = brickLeftOffset + c * (brickWidth + brickPadding);
+    let brickY = brickTopOffset + r * (brickHeight + brickPadding);
+    bricks[r][c] = { x: brickX, y: brickY, width: brickWidth, height: brickHeight, hit: false };
+  }
+};
+
+
 // Ball 
 let ballRadius = 15;
 let xPos = canvas.width / 2;
@@ -49,6 +70,26 @@ paddleRender =()=>{
   ctx.closePath();
 };
 
+// darw bricks 
+brickRender = () => {
+  for (let r = 0; r < brickRows; r++) {
+    for (let c = 0; c < brickColumns; c++) {
+      if (!bricks[r][c].hit) {
+        let brick = bricks[r][c];
+        ctx.beginPath();
+        ctx.rect(brick.x, brick.y, brick.width, brick.height);
+        ctx.fillStyle = "White";
+        ctx.fill();
+        ctx.strokeStyle = "black";
+        ctx.lineWidth = 2;
+        ctx.stroke();
+        ctx.closePath();
+      }
+    }
+  }
+
+}
+
 
 updateBallPosition = () =>{
   xPos += xMoveDist;
@@ -79,14 +120,32 @@ updateBallPosition = () =>{
   }
 };
 
+// if the ball hits the bricks 
+checkBrickCollsions = () => {
+  for (let r = 0; r < brickRows; r++) {
+    for (let c = 0; c < brickColumns; c++) {
+      let brick = bricks [r][c];
+      if(!brick.hit) {
+        if (xPos > brick.x && xPos < brick.x + brick.width && 
+          yPos > brick.y && yPos < brick.y + brickHeight) {
+            yMoveDist = - yMoveDist;
+            brick.hit = true;
+          }
+      }
+    }
+  }
+}
 
 // this part draws the ball, paddle, and position of the ball 
+
 draw=()=> {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   ballRender();
   paddleRender();
   updateBallPosition();
   PaddlePostion();
+  brickRender();
+  checkBrickCollsions();
 
 };
 
