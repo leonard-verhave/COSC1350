@@ -1,0 +1,38 @@
+/*
+Author: leonard verhave 
+Date: 11-15-24
+File Name: breakout.css
+*/
+
+/* CSS Reset */
+body, header, nav, main, footer, img, h1, h3, ul {
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; 
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f0f0;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    text-align: center; 
+  }
+
+  /* Title  */
+  #gameTitle {
+    font-size: 36px;
+    font-weight: 700;
+    color: #333;
+    margin-top: 20px; 
+    margin-bottom: 20px; 
+  }
+
+  /* Canvas */
+  canvas {
+    border: 2px solid #333;
+    background-color: rgb(123, 197, 179);
+  }
